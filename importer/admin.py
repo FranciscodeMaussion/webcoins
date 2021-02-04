@@ -2,24 +2,24 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import (
-    Item,
+    Account,
+    AccountingGroup,
+    AccountType,
     CategoryGroup,
     ChildCategory,
-    Transaction,
     Filter,
+    Item,
     Label,
-    Picture,
-    AccountingGroup,
     ParentCategory,
+    Picture,
+    Transaction,
     TransactionType,
-    Account,
-    AccountType,
 )
 
 
 class MultiDBModelAdmin(admin.ModelAdmin):
     # A handy constant for the name of the alternate database.
-    using = 'bluecoins'
+    using = "bluecoins"
 
     def save_model(self, request, obj, form, change):
         # Tell Django to save objects to the 'other' database.
@@ -36,16 +36,20 @@ class MultiDBModelAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Tell Django to populate ForeignKey widgets using a query
         # on the 'other' database.
-        return super().formfield_for_foreignkey(db_field, request, using=self.using, **kwargs)
+        return super().formfield_for_foreignkey(
+            db_field, request, using=self.using, **kwargs
+        )
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         # Tell Django to populate ManyToMany widgets using a query
         # on the 'other' database.
-        return super().formfield_for_manytomany(db_field, request, using=self.using, **kwargs)
+        return super().formfield_for_manytomany(
+            db_field, request, using=self.using, **kwargs
+        )
 
 
 class MultiDBTabularInline(admin.TabularInline):
-    using = 'bluecoins'
+    using = "bluecoins"
 
     def get_queryset(self, request):
         # Tell Django to look for inline objects on the 'other' database.
@@ -54,12 +58,16 @@ class MultiDBTabularInline(admin.TabularInline):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Tell Django to populate ForeignKey widgets using a query
         # on the 'other' database.
-        return super().formfield_for_foreignkey(db_field, request, using=self.using, **kwargs)
+        return super().formfield_for_foreignkey(
+            db_field, request, using=self.using, **kwargs
+        )
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         # Tell Django to populate ManyToMany widgets using a query
         # on the 'other' database.
-        return super().formfield_for_manytomany(db_field, request, using=self.using, **kwargs)
+        return super().formfield_for_manytomany(
+            db_field, request, using=self.using, **kwargs
+        )
 
 
 class ItemInline(MultiDBTabularInline):
@@ -125,6 +133,7 @@ class PublisherAdmin(MultiDBModelAdmin):
         AccountsInline,
         AccounttypeInline,
     ]
+
 
 admin.site.register(Item, MultiDBModelAdmin)
 admin.site.register(CategoryGroup, MultiDBModelAdmin)
