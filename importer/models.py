@@ -11,6 +11,8 @@ class AccountingGroup(models.Model):
     class Meta:
         managed = False
         db_table = 'ACCOUNTINGGROUPTABLE'
+        verbose_name = "Accounting Group"
+        verbose_name_plural = "Accounting Groups"
 
 
 class AccountType(models.Model):
@@ -27,6 +29,8 @@ class AccountType(models.Model):
     class Meta:
         managed = False
         db_table = 'ACCOUNTTYPETABLE'
+        verbose_name = "Account Type"
+        verbose_name_plural = "Account Types"
 
 
 class Account(models.Model):
@@ -64,6 +68,8 @@ class Account(models.Model):
     class Meta:
         managed = False
         db_table = 'ACCOUNTSTABLE'
+        verbose_name = "Account"
+        verbose_name_plural = "Accounts"
 
 
 class CategoryGroup(models.Model):
@@ -76,6 +82,8 @@ class CategoryGroup(models.Model):
     class Meta:
         managed = False
         db_table = 'CATEGORYGROUPTABLE'
+        verbose_name = "Category Group"
+        verbose_name_plural = "Category Groups"
 
 
 class ParentCategory(models.Model):
@@ -113,6 +121,8 @@ class ParentCategory(models.Model):
     class Meta:
         managed = False
         db_table = 'PARENTCATEGORYTABLE'
+        verbose_name = "Parent Category"
+        verbose_name_plural = "Parent Categories"
 
 
 class ChildCategory(models.Model):
@@ -155,6 +165,8 @@ class ChildCategory(models.Model):
     class Meta:
         managed = False
         db_table = 'CHILDCATEGORYTABLE'
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
 
 class Filter(models.Model):
@@ -168,6 +180,8 @@ class Filter(models.Model):
     class Meta:
         managed = False
         db_table = 'FILTERSTABLE'
+        verbose_name = "Filter"
+        verbose_name_plural = "Filters"
 
 
 class Item(models.Model):
@@ -181,6 +195,8 @@ class Item(models.Model):
     class Meta:
         managed = False
         db_table = 'ITEMTABLE'
+        verbose_name = "Item"
+        verbose_name_plural = "Items"
 
 
 class TransactionType(models.Model):
@@ -193,6 +209,8 @@ class TransactionType(models.Model):
     class Meta:
         managed = False
         db_table = 'TRANSACTIONTYPETABLE'
+        verbose_name = "Transaction Type"
+        verbose_name_plural = "Transaction Types"
 
 
 class Transaction(models.Model):
@@ -241,8 +259,9 @@ class Transaction(models.Model):
     )
     has_photo = models.IntegerField(db_column='hasPhoto', blank=True, null=True)
     label_count = models.IntegerField(db_column='labelCount', blank=True, null=True)
-    reminder_transaction = models.IntegerField(db_column='reminderTransaction', blank=True,
-                                               null=True)
+    reminder_transaction = models.IntegerField(
+        db_column='reminderTransaction', blank=True, null=True
+    )
     reminder_group = models.IntegerField(db_column='reminderGroupID', blank=True, null=True)
     reminder_frequency = models.IntegerField(db_column='reminderFrequency', blank=True, null=True)
     reminder_repeat_every = models.IntegerField(db_column='reminderRepeatEvery', blank=True, null=True)
@@ -268,8 +287,9 @@ class Transaction(models.Model):
     reminder_un_billed = models.IntegerField(db_column='reminderUnbilled', blank=True, null=True)
     credit_card_installment = models.IntegerField(db_column='creditCardInstallment', blank=True, null=True)
     reminder_version = models.IntegerField(db_column='reminderVersion', blank=True, null=True)
-    data_extra_column_string1 = models.CharField(db_column='dataExtraColumnString1', blank=True, null=True,
-                                                 max_length=500)
+    data_extra_column_string1 = models.CharField(
+        db_column='dataExtraColumnString1', blank=True, null=True, max_length=500
+    )
 
     def __str__(self):
         extra_text = f" TO {self.account_pair}" if self.account != self.account_pair else ""
@@ -278,6 +298,8 @@ class Transaction(models.Model):
     class Meta:
         managed = False
         db_table = 'TRANSACTIONSTABLE'
+        verbose_name = "Transaction"
+        verbose_name_plural = "Transactions"
 
 
 class Label(models.Model):
@@ -294,6 +316,8 @@ class Label(models.Model):
     class Meta:
         managed = False
         db_table = 'LABELSTABLE'
+        verbose_name = "Label"
+        verbose_name_plural = "Labels"
 
 
 class Picture(models.Model):
@@ -310,6 +334,8 @@ class Picture(models.Model):
     class Meta:
         managed = False
         db_table = 'PICTURETABLE'
+        verbose_name = "Picture"
+        verbose_name_plural = "Pictures"
 
 
 
